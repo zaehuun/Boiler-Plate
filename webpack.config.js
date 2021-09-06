@@ -1,9 +1,11 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const front = path.join(__dirname, 'src', 'front');
 module.exports = {
   // entry files
-  entry: ['@babel/polyfill', './src/js/main.js', './src/sass/main.scss'],
+  entry: ['@babel/polyfill', './src/front/js/main.js', './src/front/sass/main.scss'],
   // 컴파일 + 번들링된 js 파일이 저장될 경로와 이름 지정
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -11,14 +13,17 @@ module.exports = {
   },
   plugins: [
     // 컴파일 + 번들링 CSS 파일이 저장될 경로와 이름 지정
-    new MiniCssExtractPlugin({ filename: 'css/style.css' })
+    new MiniCssExtractPlugin({ filename: 'css/style.css' }),
+    new HtmlWebpackPlugin({
+        template: path.join(front, 'index.html')
+      })
   ],
   module: {
     rules: [
       {
         test: /\.js$/,
         include: [
-          path.resolve(__dirname, 'src/js')
+          path.resolve(front)
         ],
         use: {
           loader: 'babel-loader',
