@@ -11,6 +11,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/bundle.js'
   },
+  devServer:{
+    port: 9000
+  },
   plugins: [
     // 컴파일 + 번들링 CSS 파일이 저장될 경로와 이름 지정
     new MiniCssExtractPlugin({ filename: 'css/style.css' }),
