@@ -48,10 +48,14 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: [
-            'file-loader',
-        ],
-      }
+        loader: 'file-loader',
+        options: {
+              // publicPath: './dist',
+              // import Icon from '../img/hero-img.png';
+              name: '[name].[ext]',
+        }
+        
+      },
     ]
   },
   devtool: 'source-map',
